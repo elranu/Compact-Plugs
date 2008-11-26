@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CompactContainer xmlns="http://tempuri.org/ConfigurationSchema.xsd">
+  <Context Name="default">
+    <ObjectDefinition Name="Demo" Type="TestDI.DemoPresenter" Singleton="false">
+        <Property Name="Str" Set="Hi Set of String" />
+        <Property Name="Inte" Set="28" />
+        <Property Name="Something" SetWithNewType="TestDI.BehaviourISomething" FileName="TestDI.exe" />
+        <Property Name ="Obj2" SetWithObjectDefinition="Object2"/>
+    </ObjectDefinition>
+    <ObjectDefinition Name="Object2" Type="TestDI.Object2" Singleton="false" FileName="TestDI.exe">
+      <Property Name="Inte2" Set="98" />
+    </ObjectDefinition>
+    
+  </Context>
+  
+</CompactContainer> 

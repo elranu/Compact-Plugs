@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CompactContainer xmlns="http://tempuri.org/ConfigurationSchema.xsd" >
+  <Context Name="default">
+    <ObjectDefinition Name="1" Type="" FileName="" Singleton="true">
+        <Property Name="pepe" Set="fidjfidj" />
+        <Property Name="" SetWithNewType="Red@Global.Customer" />
+        <Property Name="" SetWithObjectDefinition="2" />
+        <Property Name="" SetList=",,,,," ListType="" />
+        <Property Name ="" SetDictionary="{,},{,},{,}" KeyType="" ValueType="" />
+    </ObjectDefinition>
+
+    <ObjectDefinition Name="2" Type="" FileName="">
+      
+        <Property Name="" Set="" />
+        <Property Name="" SetList="" ListType="" />
+      
+    </ObjectDefinition>
+  </Context>
+
+  <Context Name="">
+    <ObjectDefinition Name="1" Type="" FileName="">
+      
+        <Property Name="" Set="" />
+      
+    </ObjectDefinition>
+  </Context>
+  
+</CompactContainer> 

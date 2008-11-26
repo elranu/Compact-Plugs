@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CompactContainer xmlns="http://tempuri.org/ConfigurationSchema.xsd">
+  <Context Name="">
+    <ObjectDefinition FileName="" Name ="" Singleton ="true" Type ="">
+      <Property ListType ="" Name =""/>
+    </ObjectDefinition>
+    
+  </Context>
+</CompactContainer>
