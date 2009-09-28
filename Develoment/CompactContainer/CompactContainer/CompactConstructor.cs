@@ -6,7 +6,7 @@ using CompactContainer.Interfaces;
 using CompactContainer.ConfigurationObjects;
 using CompactContainer.Tools;
 
-//Develop by Mariano Julio Vicario
+//Develop by Mariano Julio Vicario -
 //http://www.codeplex.com/compactcontainer/
 //http://www.ranu.com.ar (Blog)
 //Microsoft Public License (Ms-PL)
