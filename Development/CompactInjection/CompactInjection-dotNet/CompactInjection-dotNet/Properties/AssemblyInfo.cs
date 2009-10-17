@@ -5,15 +5,14 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("CompactInjection-dotNet")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("CompactInjection")]
+[assembly: AssemblyDescription("CompactInjection for .Net Framework Version")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("CompactInjection-dotNet")]
-[assembly: AssemblyCopyright("Copyright © Microsoft 2009")]
+[assembly: AssemblyCompany("CompactInjection - Develop by Mariano Julio Vicario")]
+[assembly: AssemblyProduct("CompactInjection")]
+[assembly: AssemblyCopyright("CompactInjection - Develop by Mariano Julio Vicario")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
-
 // Setting ComVisible to false makes the types in this assembly not visible 
 // to COM components.  If you need to access a type in this assembly from 
 // COM, set the ComVisible attribute to true on that type.
