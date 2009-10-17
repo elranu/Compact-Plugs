@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CompactContainer xmlns="http://tempuri.org/ConfigSchema.xsd" >
+  <Context Name="default">
+    <ObjectDefinition Name="1" Type="f4f4" FileName="f4f4" Singleton="true">
+        <Property Name="pepe" Set="fidjfidj" />
+        <Property Name="" SetWithNewType="type" FileName="TestDI.exe" />
+        <Property Name="" SetWithObjectDefinition="27878fff" />
+        <Property Name="" SetList=",,,,," ListType="4343ff" />
+        <Property Name ="" SetDictionary="{,},{,},{,}" KeyType="44343rff" ValueType="ffffff" />
+    </ObjectDefinition>
+
+    <ObjectDefinition Name="2rere" Type="" FileName="fffff44">
+      
+        <Property Name="erere" Set="" />
+        <Property Name="rerer" SetList="" ListType="" />
+      
+    </ObjectDefinition>
+  </Context>
+
+  <Context Name="defalut2">
+    <ObjectDefinition Name="1" Type="" FileName="">
+      
+        <Property Name="rerer" Set="" />
+      
+    </ObjectDefinition>
+  </Context>
+  
+</CompactContainer> 
