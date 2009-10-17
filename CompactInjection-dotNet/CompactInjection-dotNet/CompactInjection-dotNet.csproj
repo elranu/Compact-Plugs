@@ -52,6 +52,13 @@
     <Compile Include="..\..\CompactInjection-CFrame\CompactInjection-CFrame\CompactConstructor.cs">
       <Link>CompactConstructor.cs</Link>
     </Compile>
+    <Compile Include="..\..\CompactInjection-CFrame\CompactInjection-CFrame\ConfigurationObjects\ConfigSchema.cs">
+      <Link>ConfigurationObjects\ConfigSchema.cs</Link>
+      <DependentUpon>ConfigSchema.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\CompactInjection-CFrame\CompactInjection-CFrame\Interfaces\IContextSelector.cs">
+      <Link>Interfaces\IContextSelector.cs</Link>
+    </Compile>
     <Compile Include="..\..\CompactInjection-CFrame\CompactInjection-CFrame\ObjectDefinitionRegistry.cs">
       <Link>ObjectDefinitionRegistry.cs</Link>
     </Compile>
@@ -61,17 +68,17 @@
     <Compile Include="..\..\CompactInjection-CFrame\CompactInjection-CFrame\Tools\XMLSerializerDeserializer.cs">
       <Link>Tools\XMLSerializerDeserializer.cs</Link>
     </Compile>
-    <Compile Include="ConfigurationObjects\ConfigSchema.cs">
-      <DependentUpon>ConfigSchema.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Interfaces\IContextSelector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ConfigurationObjects\ConfigSchema.xsd" />
+    <Content Include="..\..\CompactInjection-CFrame\CompactInjection-CFrame\ConfigurationObjects\ConfigExample.xml">
+      <Link>ConfigurationObjects\ConfigExample.xml</Link>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ConfigurationObjects\ConfigExample.xml" />
+    <None Include="..\..\CompactInjection-CFrame\CompactInjection-CFrame\ConfigurationObjects\ConfigSchema.xsd">
+      <Link>ConfigurationObjects\ConfigSchema.xsd</Link>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
