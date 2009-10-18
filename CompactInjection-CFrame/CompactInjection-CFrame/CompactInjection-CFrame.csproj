@@ -66,6 +66,8 @@
     <Compile Include="ObjectDefinitionRegistry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SingletonRegistry.cs" />
+    <Compile Include="Tools\Assumes.cs" />
+    <Compile Include="Tools\Assumes.InternalErrorException.cs" />
     <Compile Include="Tools\XMLSerializerDeserializer.cs" />
   </ItemGroup>
   <ItemGroup>

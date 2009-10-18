@@ -5,6 +5,7 @@ using System.Reflection;
 using CompactInjection.Interfaces;
 using CompactInjection.ConfigurationObjects;
 using CompactInjection.Tools;
+using System.Collections;
 
 //Develop by Mariano Julio Vicario -
 //http://compactplugs.codeplex.com/
@@ -160,8 +161,11 @@ namespace CompactInjection
         {
             try
             {
-                ConstructorInfo con = ty.GetConstructor((BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly), null, new Type[] { }, null);
-                return con.Invoke(new object[] { });
+                    ConstructorInfo con = ty.GetConstructor((BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly), null, new Type[] { }, null);
+                    if (con != null)
+                        return con.Invoke(new object[] { });
+                    else
+                        return null;
             }
             catch (Exception e)
             {
@@ -253,9 +257,26 @@ namespace CompactInjection
         /// <param name="objToInject"></param>
         /// <param name="var"></param>
         /// <returns></returns>
-        private static T SetDictionary<T>(T objToInject, Property var)
+        private static T SetDictionary<T>(T objToInject, Property var) where T : class
         {
-            return objToInject;
+            Assumes.NotNull<T>(objToInject);
+            Assumes.NotNull(var);
+            Type keyType = Type.GetType(var.KeyType);
+            Type valueType = Type.GetType(var.ValueType);
+            Type dictionaryType = typeof(Dictionary<,>).MakeGenericType(new Type[]{keyType,valueType});
+            IEnumerable dictTofill = NewObject(dictionaryType) as IEnumerable;
+            string[] tmpObjectsToInject = var.SetDictionary.Split(new char[] { ';' });
+            MethodInfo AddMethod = dictTofill.GetType().GetMethod("Add");
+            foreach (string item in tmpObjectsToInject)
+            {
+                string[] keyvalue = item.Replace("{", "").Replace("}", "").Split(new char[] { ',' });
+                object key = NewObject(keyType);
+                object value = NewObject(valueType);
+                key = Convert.ChangeType(keyvalue[0], keyType, null);
+                value = Convert.ChangeType(keyvalue[1], valueType, null);
+                AddMethod.Invoke(dictTofill, new object[] { key, value });
+            }
+            return SetProperty<T>(objToInject, var.Name, dictTofill);
         }
 
         /// <summary>
@@ -265,9 +286,24 @@ namespace CompactInjection
         /// <param name="objToInject"></param>
         /// <param name="var"></param>
         /// <returns></returns>
-        private static T SetList<T>(T objToInject, Property var)
+        private static T SetList<T>(T objToInject, Property var) where T : class
         {
-            return objToInject;
+            Assumes.NotNull<T>(objToInject);
+            Assumes.NotNull(var);
+
+            Type listType = Type.GetType(var.ListType);
+            Type list = typeof(List<>).MakeGenericType(listType);
+            IEnumerable listTofill = NewObject(list) as IEnumerable;
+            //IList<object> listTofill = Activator.CreateInstance(list) as List<object> ;
+            string[] tmpObjectsToInject = var.SetList.Split(new char[]{';'});
+            MethodInfo AddMethod =  listTofill.GetType().GetMethod("Add");
+            foreach (string item in tmpObjectsToInject)
+            {
+                object tmp = NewObject(listType);
+                tmp = item;
+                AddMethod.Invoke(listTofill, new object[] {tmp});
+            }
+            return SetProperty<T>(objToInject, var.Name, listTofill);
         }
 
         private T SimpleSetWihObjectDefinition<T>(T objToInject, Property var) where T : class
@@ -328,7 +364,7 @@ namespace CompactInjection
         {
             _ContextName = contextName;
             return New<T>(objName);
-        } 
+        }
         #endregion
 
         

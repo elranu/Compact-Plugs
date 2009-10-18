@@ -6,6 +6,8 @@
         <Property Name="Inte" Set="28" />
         <Property Name="Something" SetWithNewType="TestInjection.BehaviourISomething" FileName="TestInjection.exe" />
         <Property Name ="Obj2" SetWithObjectDefinition="Object2"/>
+        <Property Name="Lista" SetList="List 1;   List 2;   List 3" ListType="System.String"/>
+        <Property Name ="Dict" SetDictionary="{0, Hola};{1, Hi};{2 , Oi}" KeyType="System.Int32" ValueType="System.String" />
     </ObjectDefinition>
     <ObjectDefinition Name="Object2" Type="TestInjection.Object2" Singleton="false" FileName="TestInjection.exe">
       <Property Name="Inte2" Set="98" />

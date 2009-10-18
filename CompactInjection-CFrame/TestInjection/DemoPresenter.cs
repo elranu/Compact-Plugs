@@ -47,6 +47,13 @@ namespace TestInjection
         {
             return _iSomething.DoSomething();
         }
+
+        public List<string> Lista { get; set; }
+        
+        public Dictionary<Int32,string> Dict { get; set; }
+
+
+
 	
     
     }
