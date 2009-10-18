@@ -5,8 +5,9 @@
         <Property Name="pepe" Set="fidjfidj" />
         <Property Name="" SetWithNewType="type" FileName="TestDI.exe" />
         <Property Name="" SetWithObjectDefinition="27878fff" />
-        <Property Name="" SetList=",,,,," ListType="4343ff" />
-        <Property Name ="" SetDictionary="{,},{,},{,}" KeyType="44343rff" ValueType="ffffff" />
+        <Property Name="" SetList=";;;" ListType="4343ff" />
+        <Property Name ="" SetDictionary="{,};{,};{,}" KeyType="44343rff" ValueType="ffffff" />
+        <Property Name ="" SetDictionary="{,};{,};{,}" KeyType="44343rff" ValueType="ffffff" />
     </ObjectDefinition>
 
     <ObjectDefinition Name="2rere" Type="" FileName="fffff44">

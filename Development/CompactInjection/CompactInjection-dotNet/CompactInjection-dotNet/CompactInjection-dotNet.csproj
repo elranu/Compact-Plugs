@@ -65,6 +65,12 @@
     <Compile Include="..\..\CompactInjection-CFrame\CompactInjection-CFrame\SingletonRegistry.cs">
       <Link>SingletonRegistry.cs</Link>
     </Compile>
+    <Compile Include="..\..\CompactInjection-CFrame\CompactInjection-CFrame\Tools\Assumes.cs">
+      <Link>Tools\Assumes.cs</Link>
+    </Compile>
+    <Compile Include="..\..\CompactInjection-CFrame\CompactInjection-CFrame\Tools\Assumes.InternalErrorException.cs">
+      <Link>Tools\Assumes.InternalErrorException.cs</Link>
+    </Compile>
     <Compile Include="..\..\CompactInjection-CFrame\CompactInjection-CFrame\Tools\XMLSerializerDeserializer.cs">
       <Link>Tools\XMLSerializerDeserializer.cs</Link>
     </Compile>

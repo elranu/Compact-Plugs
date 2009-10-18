@@ -20,7 +20,7 @@
                         <xs:attribute name="ListType" type="xs:string" use="optional" />
                         <xs:attribute name="SetDictionary" type="xs:string" use="optional" />
                         <xs:attribute name="KeyType" type="xs:string" use="optional" />
-                        <xs:attribute name="ValueType" type="xs:string" use="optional" />
+                        <xs:attribute name="ValueType" type="xs:string" use="optional"/>
                       </xs:complexType>
                     </xs:element>
                   </xs:sequence>
@@ -31,7 +31,7 @@
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
-            <xs:attribute name="Name" type="xs:string" use="required" />
+            <xs:attribute name="Name" type="xs:string" use="required"/>
           </xs:complexType>
         </xs:element>
       </xs:sequence>
