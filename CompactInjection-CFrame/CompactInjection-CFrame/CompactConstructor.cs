@@ -11,9 +11,6 @@ using System.Collections;
 //http://compactplugs.codeplex.com/
 //http://www.ranu.com.ar (Blog)
 //Microsoft Public License (Ms-PL)
-
-
-
 namespace CompactInjection
 {
     public partial class CompactConstructor
@@ -161,11 +158,11 @@ namespace CompactInjection
         {
             try
             {
-                    ConstructorInfo con = ty.GetConstructor((BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly), null, new Type[] { }, null);
-                    if (con != null)
-                        return con.Invoke(new object[] { });
-                    else
-                        return null;
+                ConstructorInfo con = ty.GetConstructor((BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly), null, new Type[] { }, null);
+                if (con != null)
+                    return con.Invoke(new object[] { });
+                else
+                    return null;
             }
             catch (Exception e)
             {
@@ -336,21 +333,8 @@ namespace CompactInjection
         /// <returns></returns>
         public T New<T>(string objName) where T : class
         {
-            if (_contextSelector != null)
-                _ContextName = _contextSelector.GetCurrentContext();
-            if (_singleRegistry.GetObject<T>() != null)
-                return _singleRegistry.GetObject<T>();
-            ObjectDefinition objdef = _registry.GetDefinition(_ContextName, objName);
-            if (objdef != null)
-            {
-                T objToBeInjected = NewObject(typeof(T)) as T;
-                T injectedObject = InjectObject<T>(objdef, objToBeInjected);
-                if (objdef.Singleton)
-                    _singleRegistry.AddSingleton<T>(injectedObject);
-                return injectedObject;
-            }
-            else
-                throw new Exception("The type:" + typeof(T).ToString() + " dosen´t has a ObjectDefinition");
+            T objToBeInjected = NewObject(typeof(T)) as T;
+            return Build<T>(objToBeInjected, objName);
         }
 
         /// <summary>
@@ -367,11 +351,44 @@ namespace CompactInjection
         }
         #endregion
 
+        #region Builders
+        /// <summary>
+        /// Build Object
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="objName"></param>
+        /// <returns></returns>
+        public T Build<T>(T objToBuild, string objName) where T : class
+        {
+            if (_contextSelector != null)
+                _ContextName = _contextSelector.GetCurrentContext();
+            if (_singleRegistry.GetObject<T>() != null)
+                return _singleRegistry.GetObject<T>();
+            ObjectDefinition objdef = _registry.GetDefinition(_ContextName, objName);
+            if (objdef != null)
+            {
+                T injectedObject = InjectObject<T>(objdef, objToBuild);
+                if (objdef.Singleton)
+                    _singleRegistry.AddSingleton<T>(injectedObject);
+                return injectedObject;
+            }
+            else
+                throw new Exception("The type:" + typeof(T).ToString() + " dosen´t has a ObjectDefinition");
+        }
+
+        /// <summary>
+        /// Build Object
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="objName"></param>
+        /// <returns></returns>
+        public T Build<T>(T objToBuilt, string ObjName, string contextName) where T : class
+        {
+            _ContextName = contextName;
+            return Build<T>(objToBuilt, ObjName);
+        }
         
-
-
-
-        
+        #endregion 
         
     }
 }
