@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="CompactPlugs">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" name="Plugin">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element minOccurs="0" maxOccurs="unbounded" name="Caller-Plugin">
+                <xs:complexType>
+                  <xs:attribute name="name" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element minOccurs="0" maxOccurs="unbounded" name="Dependent-Plugin">
+                <xs:complexType>
+                  <xs:attribute name="name" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element maxOccurs="unbounded" name="Input">
+                <xs:complexType>
+                  <xs:sequence minOccurs="0">
+                    <xs:element maxOccurs="unbounded" name="Allow">
+                      <xs:complexType>
+                        <xs:attribute name="Id" type="xs:string" use="optional" />
+                        <xs:attribute name="Type" type="xs:string" use="optional" />
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element maxOccurs="unbounded" name="Deny">
+                      <xs:complexType>
+                        <xs:attribute name="Id" type="xs:string" use="optional" />
+                        <xs:attribute name="Type" type="xs:string" use="optional" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="Id" type="xs:string" use="required" />
+                  <xs:attribute name="Type" type="xs:string" use="required" />
+                  <xs:attribute name="SetterProperty" type="xs:string" use="required" />
+                  <xs:attribute name="AcessLevel" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element maxOccurs="unbounded" name="Output">
+                <xs:complexType>
+                  <xs:attribute name="Id" type="xs:string" use="required" />
+                  <xs:attribute name="Type" type="xs:string" use="required" />
+                  <xs:attribute name="GetterProperty" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="Name" type="xs:string" use="required" />
+            <xs:attribute name="Type" type="xs:string" use="required" />
+            <xs:attribute name="FileName" type="xs:string" use="required" />
+            <xs:attribute name="Version" type="xs:decimal" use="required" />
+            <xs:attribute name="LazyLoad" type="xs:boolean" use="required" />
+            <xs:attribute name="LabelGetter" type="xs:string" use="required" />
+            <xs:attribute name="HelpLabelGetter" type="xs:string" use="required" />
+            <xs:attribute name="DescriptionLabelGetter" type="xs:string" use="required" />
+            <xs:attribute name="InstallMethod" type="xs:string" use="optional" />
+            <xs:attribute name="RunMethod" type="xs:string" use="optional" />
+            <xs:attribute name="UninstallMethod" type="xs:string" use="optional" />
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
