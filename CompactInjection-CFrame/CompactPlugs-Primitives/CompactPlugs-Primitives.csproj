@@ -61,7 +61,7 @@
     <Compile Include="CompactPlugsConfiguration.cs">
       <DependentUpon>CompactPlugsConfiguration.xsd</DependentUpon>
     </Compile>
-    <Compile Include="IPluginRegistry.cs" />
+    <Compile Include="IPluginLocator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -70,6 +70,12 @@
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />
     <None Include="CompactPlugsConfiguration.xsd" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CompactInjection-CFrame\CompactInjection-CFrame.csproj">
+      <Project>{2760EA66-7A69-431F-AB1D-5EB6DC5E3092}</Project>
+      <Name>CompactInjection-CFrame</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
   <ProjectExtensions>

@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using CompactInjection.ConfigurationObjects;
 
 namespace CompactPlugs_Primitives
 {
-    interface IPluginRegistry
+    public interface IPluginLocator
     {
 
          void SearchPlugins();
-         CompactPlugs Plugins { get;  }
+         PlugsContainer Plugins { get;  }
+         CompactContainer ObjectDefinitions { get; }
     
     }
 }

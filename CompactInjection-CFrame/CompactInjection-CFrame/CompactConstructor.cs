@@ -67,6 +67,10 @@ namespace CompactInjection
             _ContextName = contextName;
             _registry.AddDefinitions(container);
         }
+        public CompactConstructor(CompactContainer container)
+        {
+            _registry.AddDefinitions(container);
+        }
 
         public CompactConstructor(Context context, string contextNmae)
         {
@@ -349,6 +353,13 @@ namespace CompactInjection
             _ContextName = contextName;
             return New<T>(objName);
         }
+
+        public object New(Type ty) 
+        {
+            //TODO: bsucar por tipo e injectar
+            return  NewObject(ty);
+        }
+
         #endregion
 
         #region Builders

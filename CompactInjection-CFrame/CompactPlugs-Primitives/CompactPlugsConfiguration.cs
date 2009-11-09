@@ -22,7 +22,7 @@ namespace CompactPlugs_Primitives {
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
-    public partial class CompactPlugs {
+    public partial class PlugsContainer {
         
         private Plugin[] pluginField;
         
