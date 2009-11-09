@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<CompactPlugs>
+<PlugsContainer>
   <Plugin Name="id" Type="type" FileName="name.dll" Version="1.0" LazyLoad="true" LabelGetter="ioio" HelpLabelGetter="opo" DescriptionLabelGetter="ioioi" InstallMethod="mm" RunMethod="run" UninstallMethod="uni">
     <Caller-Plugin name="id" />
     <Caller-Plugin name="id" />
@@ -30,4 +30,4 @@
     <Output Id="" Type="type" GetterProperty="getter" />
     <Output Id="" Type="type" GetterProperty="getter" />
   </Plugin>
-</CompactPlugs> 
+</PlugsContainer> 
