@@ -28,7 +28,7 @@ namespace CompactPlugs_Primitives {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("Plugin")]
-        public Plugin[] Plugin {
+        public Plugin[] Plugins {
             get {
                 return this.pluginField;
             }
@@ -305,6 +305,8 @@ namespace CompactPlugs_Primitives {
         private string setterPropertyField;
         
         private string acessLevelField;
+
+        private bool mandatoryField;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("Allow")]
@@ -369,6 +371,18 @@ namespace CompactPlugs_Primitives {
             }
             set {
                 this.acessLevelField = value;
+            }
+        }
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public bool Mandatory
+        {
+            get
+            {
+                return this.mandatoryField;
+            }
+            set
+            {
+                this.mandatoryField = value;
             }
         }
     }
