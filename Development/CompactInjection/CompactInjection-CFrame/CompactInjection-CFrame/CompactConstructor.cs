@@ -342,7 +342,7 @@ namespace CompactInjection
         }
 
         /// <summary>
-        /// New Object
+        /// New Object !No injecta! FALTA eso!!
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="objName"></param>
@@ -356,7 +356,8 @@ namespace CompactInjection
 
         public object New(Type ty) 
         {
-            //TODO: bsucar por tipo e injectar
+            //TODO: bsucar por tipo e injectar /  search by type and inject
+            //tb chequear singleton
             return  NewObject(ty);
         }
 
