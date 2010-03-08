@@ -51,7 +51,8 @@ namespace CompactInjection
                 {
                     if (!_registry.ContainsKey(context))
                         _registry.Add(context, new Dictionary<string, ObjectDefinition>());
-                    _registry[context].Add(obj.Name, obj);
+                    if(!_registry[context].ContainsKey(obj.Name))
+                        _registry[context].Add(obj.Name, obj);
                 }
                 catch (ArgumentException ex)
                 {

@@ -12,27 +12,29 @@ using CompactInjection;
 //Microsoft Public License (Ms-PL)
 namespace CompactPlugs
 {
-    internal class CompactPlugsRegistry
+    internal class CompactPlugsRegistry : IDisposable
     {
 
         Dictionary<string, KeyValuePair<Plugin, object>> LoadedPlugins;
         Dictionary<Type, KeyValuePair<Plugin, object>> LoadedPluginsByType; //podria ser de que c/type no es unico. Tonces deberia de tener una List de plugins 
         Dictionary<string, Plugin> InstalledPlugins;
         Dictionary<string, Plugin> InitialPlugins;
-        Dictionary<Type, object> Outputs;
+        Dictionary<Type, List<KeyValuePair<string, object>>> Outputs; //Type: of the object - String: name of the plugin - Object: output 
         Dictionary<Type, List<Plugin>> Inputs; //sirve para poner los inputs que necesita c/plugin. Ayuda a buscar todos los plugins que tienen que ser llamados
         Dictionary<string, Plugin> AllPlugins; //k=name // son aquellos plgins q tiene los callers declarados.
+        Dictionary<string, List<string>> PosibleCallers; //key=Caller Plugin name, Value= plugins name to initialice
         CompactConstructor _Constructor;
              
         public CompactPlugsRegistry(CompactConstructor constructor )
         {
             LoadedPlugins = new Dictionary<string, KeyValuePair<Plugin, object>>();
             LoadedPluginsByType = new Dictionary<Type, KeyValuePair<Plugin, object>>();
-            InstalledPlugins = new Dictionary<string, Plugin>();
+            InstalledPlugins = new Dictionary<string, Plugin>(); //TODO: falta guardar el estado y loader el estado de los plugin instalados en un archivo
             InitialPlugins = new Dictionary<string, Plugin>();
-            Outputs = new Dictionary<Type, object>();
+            Outputs = new Dictionary<Type, List<KeyValuePair<string, object>>>();
             Inputs = new Dictionary<Type, List<Plugin>>();
             AllPlugins = new Dictionary<string, Plugin>();
+            PosibleCallers = new Dictionary<string, List<string>>();
             _Constructor = constructor;
         }
 
@@ -51,27 +53,36 @@ namespace CompactPlugs
         {
             if (AllPlugins.ContainsKey(plug.Name))
             {
-                AllPlugins.Add(plug.Name, plug);
-                ExtractInputs(plug);
+                if (plug.LazyLoad)
+                {//sino es un Lazy es un initial plugin
+                    AllPlugins.Add(plug.Name, plug);
+                    ExtractPosibleCallers(plug);
+                }
+                else
+                    InitialPlugins.Add(plug.Name, plug);
             }
         }
+
         /// <summary>
-        /// Extract inputs metadata of the plugins
+        /// 
         /// </summary>
         /// <param name="plug"></param>
-        private void ExtractInputs(Plugin plug)
+        private void ExtractPosibleCallers(Plugin plug)
         {
-            if (plug.Inputs.Length > 0)
+            if (plug.CallerPlugins != null && plug.CallerPlugins.Length > 0)
             {
-                foreach (PluginInput input in plug.Inputs)
+                foreach (CallerPlugin callerPlug in plug.CallerPlugins)
                 {
-                    Type inputType = Type.GetType(input.Type);
-                    if (!Inputs.ContainsKey(inputType))
-                        Inputs[inputType] = new List<Plugin>();
-                    Inputs[inputType].Add(plug);
-                }
+                    if (!PosibleCallers.ContainsKey(callerPlug.name))
+                        PosibleCallers.Add(callerPlug.name, new List<string>());
+                    PosibleCallers[callerPlug.name].Add(plug.Name);
+                }   
             }
+            throw new Exception(string.Format("The plugin %1 is LazyLoad in true, and does not have any callerPlugin Id", plug.Name));
         }
+
+        
+        
         /// <summary>
         /// El key si esta andando el plugin o no. El Value es el plugin
         /// </summary>
@@ -112,9 +123,25 @@ namespace CompactPlugs
                 {
                     System.Reflection.PropertyInfo prop = obj.GetType().GetProperty(item.GetterProperty);
                     object output = prop.GetValue(obj, null);
-                    Outputs.Add(output.GetType(), output);
+                    if(!Outputs.ContainsKey(output.GetType()))
+                        Outputs.Add(output.GetType(), new List<KeyValuePair<string,object>>());
+                    Outputs[output.GetType()].Add(new KeyValuePair<string,object>(plug.Name, output)); 
                 }
             }
+        }
+
+        /// <summary>
+        /// Available outputs for that type.
+        /// String: plugin name of the output
+        /// object: the output
+        /// </summary>
+        /// <param name="ty"></param>
+        /// <returns></returns>
+        public List<KeyValuePair<string,object>> GetOutputsForType(Type ty) 
+        {
+            if (Outputs.ContainsKey(ty))
+                return Outputs[ty];
+            return null;
         }
        
 
@@ -139,12 +166,51 @@ namespace CompactPlugs
 
         public List<Plugin> GetCalledPlugins(Type ty)
         {
-            //Todo: mal falta mandar todos los plugins que se deben instanciar. Tienen q estar instalados, y 
-            Plugin plg = LoadedPluginsByType[ty].Key;
-            return null;//AllPlugins[plg.Name];
+            List<Plugin> plList;
+            Plugin plg;
+            if (LoadedPluginsByType.ContainsKey(ty))
+                plg = LoadedPluginsByType[ty].Key;
+            else
+                return null;
+            List<string> list = GetCalledPluginsBy(plg);
+            if (list != null && list.Count >0)
+            {
+                plList = new List<Plugin>();
+                foreach (string item in list)
+                {
+                    KeyValuePair<bool, Plugin> tm = this.SearchPlugin(item);
+                    if (!tm.Key && tm.Value != null)
+                        plList.Add(tm.Value);
+                }
+                if (plList.Count > 0)
+                    return plList;
+            }
+            return null;
         }
 
-      
+        /// <summary>
+        /// returns all the plugins must be initiated called by 
+        /// </summary>
+        /// <param name="pl"></param>
+        /// <returns></returns>
+        private List<string> GetCalledPluginsBy(Plugin pl)
+        {
+
+            if (PosibleCallers.ContainsKey(pl.Name))
+                return PosibleCallers[pl.Name];
+            return null;
+
+        }
+
+
+        #region IDisposable Members
+
+        void IDisposable.Dispose()
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
     }
 
     internal enum PluginType
