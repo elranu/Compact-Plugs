@@ -149,7 +149,7 @@ namespace CompactInjection
             }
             catch (Exception e)
             {
-                throw new Exception("Error al intentar setar la propiedad: " + propertieToBeInjected + " del objeto: " + objToBeInjected + " con el objeto del tipo: " + objToBeInjected.GetType().ToString(), e);
+                throw new Exception("Error inserting propety: " + propertieToBeInjected + " of the object: " + objToBeInjected + " with the object: " + objToBeInjected.GetType().ToString(), e);
             }
         }
 
@@ -170,7 +170,7 @@ namespace CompactInjection
             }
             catch (Exception e)
             {
-                throw new Exception("Error al intentar crear el objeto del Tipo: " + ty.ToString(), e);
+                throw new Exception("Error trying to instance the object of type: " + ty.ToString(), e);
             }
         }
 
@@ -252,7 +252,7 @@ namespace CompactInjection
 
         #region Setter's Injectors
         /// <summary>
-        /// Dosen't do anything at the moment
+        /// Set dictionay
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="objToInject"></param>
@@ -317,7 +317,7 @@ namespace CompactInjection
         private static T SetWithNewType<T>(T objToInject, Property var)
         {
             Type tipo = Assembly.LoadFrom(var.FileName).GetType(var.SetWithNewType);
-            return SetProperty<T>(objToInject, var.Name, NewObject(tipo));
+            return SetProperty<T>(objToInject, var.Name, (var.ObjectToInject==null)?NewObject(tipo): var.ObjectToInject);
         }
 
         private static T SimpleSet<T>(T objToInject, Property var)
@@ -342,7 +342,7 @@ namespace CompactInjection
         }
 
         /// <summary>
-        /// New Object !No injecta! FALTA eso!!
+        /// 
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="objName"></param>
@@ -354,18 +354,33 @@ namespace CompactInjection
             return New<T>(objName);
         }
 
-        public object New(Type ty) 
+        /// <summary>
+        /// Intance a New object of a type
+        /// Does not inject. Olny creates the instance the object type
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="ty"></param>
+        /// <returns></returns>
+        public T Create<T>(Type ty) where T: class
         {
-            //TODO: bsucar por tipo e injectar /  search by type and inject
-            //tb chequear singleton
-            return  NewObject(ty);
+            return  NewObject(ty) as T;
+        }
+        /// <summary>
+        /// Intance a New object of a type
+        /// Does not inject. Olny creates the instance the object type
+        /// </summary>
+        /// <param name="ty"></param>
+        /// <returns></returns>
+        public object Create(Type ty) 
+        {
+            return NewObject(ty);
         }
 
         #endregion
 
         #region Builders
         /// <summary>
-        /// Build Object
+        /// Build Object (inject object with its definition)
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="objName"></param>
