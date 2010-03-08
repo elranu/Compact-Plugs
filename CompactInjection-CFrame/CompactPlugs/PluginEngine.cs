@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using CompactPlugs_Primitives;
 using CompactInjection;
+using CompactInjection.ConfigurationObjects;
 using System.Reflection;
 
 //Develop by Mariano Julio Vicario -
@@ -54,15 +55,20 @@ namespace CompactPlugs
         {
             PlugsRegistry.ExtractOutputs(obj);
             List<Plugin> plugs = PlugsRegistry.GetCalledPlugins(obj.GetType());
+            if(plugs != null && plugs.Count >0)
+                foreach (Plugin item in plugs)
+                {
+                    RunPlugin(item);
+                }
         }
         public void CallPlugins(object obj, string str)
         {
-            
+            throw new  NotImplementedException();
         }
 
         public void UnloadPlugin(object obj)
         {
-            //PlugsRegistry.   
+            throw new NotImplementedException();   
         }
 
         private void InstallPlugin(Plugin plug)
@@ -71,7 +77,7 @@ namespace CompactPlugs
             {
                 Type ty = Type.GetType(plug.Type);
                 MethodInfo installMethod = ty.GetMethod(plug.InstallMethod);
-                installMethod.Invoke(Constructor.New(ty), new object[] { });
+                installMethod.Invoke(Constructor.Create(ty), new object[] { });
             }
             catch (Exception e) 
             {
@@ -85,9 +91,9 @@ namespace CompactPlugs
             {
                 Type ty = Type.GetType(plug.Type);
                 CheckAndRunDependencies(plug);
-                object obj = Constructor.New(ty);
-                //TODO:falta injectar los outputs
-                obj = InjectInputs(obj, plug);
+                object obj = Constructor.Create(ty);
+                if(plug.LazyLoad)//TODO: bug: si los initial plugs tiene inputs de otros initial plugs no anda
+                    obj = InjectInputs(obj, plug);
                 MethodInfo runMethod = ty.GetMethod(plug.RunMethod);
                 runMethod.Invoke(obj, new object[] { });
                 PlugsRegistry.AddLoadedPlugin(plug, obj);
@@ -100,7 +106,29 @@ namespace CompactPlugs
 
         private object InjectInputs(object obj, Plugin plug)
         {
-            throw new Exception("falta, todo");
+            ObjectDefinition objDef = CreateObjectDefinition(obj, plug);
+            Constructor.AddDefinition(objDef, "default");
+            return Constructor.Build<object>(obj, objDef.Name);
+        }
+
+        private ObjectDefinition CreateObjectDefinition(object obj, Plugin plug)
+        {
+            ObjectDefinition objDef = new ObjectDefinition();
+            objDef.Name = plug.Name + "Plug";
+            objDef.Type = obj.GetType().ToString();
+            List<Property> propertiesToInject = new List<Property>();
+            foreach (PluginInput input in plug.Inputs)
+            {
+                List<KeyValuePair<string, object>> outList = PlugsRegistry.GetOutputsForType(Type.GetType(input.Type));
+                if (outList == null)
+                {
+                    if (outList.Count == 1 || outList.Count > 1) //TODO: falta Desarrollar cuando hay mas de un plugin para el mismo tipo
+                        propertiesToInject.Add( new Property(input.SetterProperty, outList[0].Value.GetType(), outList[0].Value));
+                    
+                }
+            }
+            objDef.Properties = propertiesToInject.ToArray();
+            return objDef;
         }
 
         private void RunPlugin(string pluginName)

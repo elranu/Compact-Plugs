@@ -62,6 +62,7 @@
     <Compile Include="ConfigurationObjects\ConfigSchema.cs">
       <DependentUpon>ConfigSchema.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ConfigurationObjects\Property.cs" />
     <Compile Include="Interfaces\IContextSelector.cs" />
     <Compile Include="ObjectDefinitionRegistry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
