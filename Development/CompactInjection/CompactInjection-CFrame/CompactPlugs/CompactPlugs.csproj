@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="PluginEngine.cs" />
     <Compile Include="CompactPlugsRegistry.cs" />
+    <Compile Include="PluginLocators\SimpleFilePluginLocator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

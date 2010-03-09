@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CompactConstructor.cs" />
+    <Compile Include="ConfigurationObjects\CompactContainer.cs" />
     <Compile Include="ConfigurationObjects\ConfigSchema.cs">
       <DependentUpon>ConfigSchema.xsd</DependentUpon>
     </Compile>

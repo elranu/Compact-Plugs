@@ -11,7 +11,7 @@ using System.IO;
 
 namespace CompactInjection.Tools
 {
-    internal class XmlSerializerDeserializer
+    public class XmlSerializerDeserializer
     {
         public static void Serializer<T>(Object objToSerialize, string xmlPath) where T: class
         {

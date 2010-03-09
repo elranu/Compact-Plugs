@@ -52,12 +52,13 @@
             <xs:attribute name="FileName" type="xs:string" use="required" />
             <xs:attribute name="Version" type="xs:decimal" use="required" />
             <xs:attribute name="LazyLoad" type="xs:boolean" use="required" />
-            <xs:attribute name="LabelGetter" type="xs:string" use="required" />
-            <xs:attribute name="HelpLabelGetter" type="xs:string" use="required" />
-            <xs:attribute name="DescriptionLabelGetter" type="xs:string" use="required" />
+            <xs:attribute name="Label" type="xs:string" use="required" />
+            <xs:attribute name="HelpLabel" type="xs:string" use="required" />
+            <xs:attribute name="DescriptionLabel" type="xs:string" use="required" />
             <xs:attribute name="InstallMethod" type="xs:string" use="optional" />
             <xs:attribute name="RunMethod" type="xs:string" use="optional" />
             <xs:attribute name="UninstallMethod" type="xs:string" use="optional" />
+            <xs:attribute name="Category" type="xs:string" use="optional" />
           </xs:complexType>
         </xs:element>
       </xs:sequence>

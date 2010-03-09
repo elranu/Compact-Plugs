@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <PlugsContainer>
-  <Plugin Name="id" Type="type" FileName="name.dll" Version="1.0" LazyLoad="true" LabelGetter="ioio" HelpLabelGetter="opo" DescriptionLabelGetter="ioioi" InstallMethod="mm" RunMethod="run" UninstallMethod="uni">
+  <Plugin Name="id" Type="type" FileName="name.dll" Version="1.0" LazyLoad="true" Category="opo" Label="ioio" HelpLabel="opo" DescriptionLabel="ioioi" InstallMethod="mm" RunMethod="run" UninstallMethod="uni">
     <Caller-Plugin name="id" />
     <Caller-Plugin name="id" />
     <Dependent-Plugin name="id" />

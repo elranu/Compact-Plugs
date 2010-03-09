@@ -12,6 +12,7 @@ namespace CompactPlugs_Primitives
          void SearchPlugins();
          PlugsContainer Plugins { get;  }
          CompactContainer ObjectDefinitions { get; }
+         event EventHandler<NewPlugsEventArgs> NewPlugins;
     
     }
 }
