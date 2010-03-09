@@ -64,17 +64,19 @@ namespace CompactPlugs_Primitives {
         
         private bool lazyLoadField;
         
-        private string labelGetterField;
+        private string labelField;
         
-        private string helpLabelGetterField;
+        private string helpLabelField;
         
-        private string descriptionLabelGetterField;
+        private string descriptionLabelField;
         
         private string installMethodField;
         
         private string runMethodField;
         
         private string uninstallMethodField;
+
+        private string categoryField;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("Caller-Plugin")]
@@ -177,34 +179,34 @@ namespace CompactPlugs_Primitives {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string LabelGetter {
+        public string Label {
             get {
-                return this.labelGetterField;
+                return this.labelField;
             }
             set {
-                this.labelGetterField = value;
+                this.labelField = value;
             }
         }
         
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string HelpLabelGetter {
+        public string HelpLabel {
             get {
-                return this.helpLabelGetterField;
+                return this.helpLabelField;
             }
             set {
-                this.helpLabelGetterField = value;
+                this.helpLabelField = value;
             }
         }
         
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string DescriptionLabelGetter {
+        public string DescriptionLabel {
             get {
-                return this.descriptionLabelGetterField;
+                return this.descriptionLabelField;
             }
             set {
-                this.descriptionLabelGetterField = value;
+                this.descriptionLabelField = value;
             }
         }
         
@@ -238,6 +240,19 @@ namespace CompactPlugs_Primitives {
             }
             set {
                 this.uninstallMethodField = value;
+            }
+        }
+
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string Category
+        {
+            get
+            {
+                return this.categoryField;
+            }
+            set
+            {
+                this.categoryField = value;
             }
         }
     }

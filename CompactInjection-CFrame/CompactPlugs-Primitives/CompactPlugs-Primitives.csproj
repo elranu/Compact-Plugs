@@ -62,6 +62,7 @@
       <DependentUpon>CompactPlugsConfiguration.xsd</DependentUpon>
     </Compile>
     <Compile Include="IPluginLocator.cs" />
+    <Compile Include="PlugsContainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

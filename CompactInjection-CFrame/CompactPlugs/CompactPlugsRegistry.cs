@@ -24,6 +24,7 @@ namespace CompactPlugs
         Dictionary<string, Plugin> AllPlugins; //k=name // son aquellos plgins q tiene los callers declarados.
         Dictionary<string, List<string>> PosibleCallers; //key=Caller Plugin name, Value= plugins name to initialice
         CompactConstructor _Constructor;
+        Dictionary<string, List<Plugin>> CategoryDic; //key Category
              
         public CompactPlugsRegistry(CompactConstructor constructor )
         {
@@ -35,6 +36,7 @@ namespace CompactPlugs
             Inputs = new Dictionary<Type, List<Plugin>>();
             AllPlugins = new Dictionary<string, Plugin>();
             PosibleCallers = new Dictionary<string, List<string>>();
+            CategoryDic = new Dictionary<string, List<Plugin>>();
             _Constructor = constructor;
         }
 
@@ -51,7 +53,7 @@ namespace CompactPlugs
 
         public void Add(Plugin plug) 
         {
-            if (AllPlugins.ContainsKey(plug.Name))
+            if (!AllPlugins.ContainsKey(plug.Name) && !InitialPlugins.ContainsKey(plug.Name))
             {
                 if (plug.LazyLoad)
                 {//sino es un Lazy es un initial plugin
@@ -61,6 +63,27 @@ namespace CompactPlugs
                 else
                     InitialPlugins.Add(plug.Name, plug);
             }
+            else
+            {
+                if (AllPlugins.ContainsKey(plug.Name) && plug.LazyLoad)
+                    AllPlugins[plug.Name] = plug;
+                else
+                    InitialPlugins[plug.Name] = plug;
+            }
+            if (plug != null && !string.IsNullOrEmpty(plug.Category))
+            {
+                if(!CategoryDic.ContainsKey(plug.Category))
+                    CategoryDic.Add(plug.Category, new List<Plugin>());
+                CategoryDic[plug.Category].Add(plug);
+            }
+
+        }
+
+        public List<Plugin> SearchPluginsByCategory(string category)
+        {
+            if (CategoryDic.ContainsKey(category))
+                return CategoryDic[category];
+            return null;
         }
 
         /// <summary>
@@ -213,10 +236,6 @@ namespace CompactPlugs
         #endregion
     }
 
-    internal enum PluginType
-    {
-        Installed, Loaded, Initial, Lazy, Outputs, Easy
-    }
         
     static class ExtensionMethods
     {

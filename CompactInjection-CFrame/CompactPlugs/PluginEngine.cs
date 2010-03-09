@@ -24,6 +24,12 @@ namespace CompactPlugs
         public PluginEngine(IPluginLocator locator)
         {
             PluginLocator = locator;
+            PluginLocator.NewPlugins += new EventHandler<NewPlugsEventArgs>(PluginLocator_NewPlugins);
+        }
+
+        private void PluginLocator_NewPlugins(object sender, NewPlugsEventArgs e)
+        {
+            PlugsRegistry.Add(e.NewPlugins);
         }
 
         public void Run()
@@ -50,6 +56,11 @@ namespace CompactPlugs
             }
         }
         #endregion
+
+        public List<Plugin> SearchPluginsByCategory(string category)
+        {
+            return PlugsRegistry.SearchPluginsByCategory(category);
+        }
 
         public void CallPlugins(object obj)
         {
