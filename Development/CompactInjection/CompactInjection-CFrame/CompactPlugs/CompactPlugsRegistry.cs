@@ -101,7 +101,8 @@ namespace CompactPlugs
                     PosibleCallers[callerPlug.name].Add(plug.Name);
                 }   
             }
-            throw new Exception(string.Format("The plugin %1 is LazyLoad in true, and does not have any callerPlugin Id", plug.Name));
+            else 
+                throw new Exception(string.Format("The plugin {0} is LazyLoad in true, and does not have any callerPlugin Id", plug.Name));
         }
 
         
@@ -139,17 +140,18 @@ namespace CompactPlugs
 
         public void ExtractOutputs(object obj) 
         { 
-            if(LoadedPluginsByType.ContainsKey(obj.GetType()))
+            if(obj!= null && LoadedPluginsByType.ContainsKey(obj.GetType()))
             {
                 Plugin plug = LoadedPluginsByType[obj.GetType()].Key;
-                foreach (PluginOutput item in plug.Outputs)
-                {
-                    System.Reflection.PropertyInfo prop = obj.GetType().GetProperty(item.GetterProperty);
-                    object output = prop.GetValue(obj, null);
-                    if(!Outputs.ContainsKey(output.GetType()))
-                        Outputs.Add(output.GetType(), new List<KeyValuePair<string,object>>());
-                    Outputs[output.GetType()].Add(new KeyValuePair<string,object>(plug.Name, output)); 
-                }
+                if(plug != null && plug.Outputs != null && plug.Outputs.Length > 0)
+                    foreach (PluginOutput item in plug.Outputs)
+                    {
+                        System.Reflection.PropertyInfo prop = obj.GetType().GetProperty(item.GetterProperty);
+                        object output = prop.GetValue(obj, null);
+                        if(!Outputs.ContainsKey(output.GetType()))
+                            Outputs.Add(output.GetType(), new List<KeyValuePair<string,object>>());
+                        Outputs[output.GetType()].Add(new KeyValuePair<string,object>(plug.Name, output)); 
+                    }
             }
         }
 
@@ -162,7 +164,7 @@ namespace CompactPlugs
         /// <returns></returns>
         public List<KeyValuePair<string,object>> GetOutputsForType(Type ty) 
         {
-            if (Outputs.ContainsKey(ty))
+            if (ty != null && Outputs.ContainsKey(ty))
                 return Outputs[ty];
             return null;
         }
@@ -170,7 +172,7 @@ namespace CompactPlugs
 
         public Plugin[] GetInitialPlugs()
         {
-            return InitialPlugins.ToArray<Plugin>();
+            return InitialPlugins.Values.ToArray<Plugin>();
         }
         public bool IsPluginLoaded(string  plugname)
         {
@@ -237,11 +239,11 @@ namespace CompactPlugs
     }
 
         
-    static class ExtensionMethods
-    {
-        public static TSource[] ToArray<TSource>(this IEnumerable source)
-        {
-            return source.Cast<TSource>().ToArray();
-        }
-    }
+    //static class ExtensionMethods
+    //{
+    //    public static TSource[] ToArray<TSource>(this IEnumerable source)
+    //    {
+    //        return source.Cast<TSource>().ToArray();
+    //    }
+    //}
 }

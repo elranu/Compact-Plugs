@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<PlugsContainer>
+  <Plugin Name="InitialForm" Type="TestCompactPlugs1.Form1" FileName="TestCompactPlugs1.exe" Version="1.0" LazyLoad="false" Category="Init" Label="WindowsForm" HelpLabel="Help Windows Form" DescriptionLabel="Init Form" InstallMethod="" RunMethod="Dummy" UninstallMethod="">
+    <Output Id="" Type="TestCompactPlugs1.Form1" GetterProperty="GetOutPut1" />
+  </Plugin>
+  <Plugin Name="AddButton" Type="TestCompactPlugs1.Plugins.AddButtonPlugin" FileName="TestCompactPlugs1.exe" Version="1.0" LazyLoad="false" Category="Init" Label="AddButton" HelpLabel="Add Button to Windows Form" DescriptionLabel="Init Form" InstallMethod="" RunMethod="Run" UninstallMethod="">
+    <Dependent-Plugin name="InitialForm" />
+    <Input Id="InWinForm" Type="TestCompactPlugs1.Form1" FileName="TestCompactPlugs1.exe" SetterProperty="WinForm" Mandatory="true"></Input>
+  </Plugin>
+</PlugsContainer> 

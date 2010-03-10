@@ -37,6 +37,7 @@
                   <xs:attribute name="SetterProperty" type="xs:string" use="required" />
                   <xs:attribute name="AcessLevel" type="xs:string" use="required" />
                   <xs:attribute name="Mandatory" type="xs:boolean" use="required" />
+                  <xs:attribute name="FileName" type="xs:string" use="required" />
                 </xs:complexType>
               </xs:element>
               <xs:element maxOccurs="unbounded" name="Output">

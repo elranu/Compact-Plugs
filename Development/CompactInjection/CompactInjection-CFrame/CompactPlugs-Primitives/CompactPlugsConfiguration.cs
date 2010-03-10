@@ -101,7 +101,7 @@ namespace CompactPlugs_Primitives {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("Inputs")]
+        [System.Xml.Serialization.XmlElementAttribute("Input")]
         public PluginInput[] Inputs {
             get {
                 return this.inputField;
@@ -112,7 +112,7 @@ namespace CompactPlugs_Primitives {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("Outputs")]
+        [System.Xml.Serialization.XmlElementAttribute("Output")]
         public PluginOutput[] Outputs {
             get {
                 return this.outputField;
@@ -321,7 +321,23 @@ namespace CompactPlugs_Primitives {
         
         private string acessLevelField;
 
+        private string fileNameField;
+
         private bool mandatoryField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string FileName
+        {
+            get
+            {
+                return this.fileNameField;
+            }
+            set
+            {
+                this.fileNameField = value;
+            }
+        }
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("Allow")]
