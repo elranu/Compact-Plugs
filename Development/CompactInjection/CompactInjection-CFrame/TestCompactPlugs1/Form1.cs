@@ -32,5 +32,12 @@ namespace TestCompactPlugs1
         {
             get { return this; }
         }
+
+        private void label1_ParentChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        
     }
 }

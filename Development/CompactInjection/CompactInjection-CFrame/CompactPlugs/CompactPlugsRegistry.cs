@@ -203,7 +203,7 @@ namespace CompactPlugs
                 plList = new List<Plugin>();
                 foreach (string item in list)
                 {
-                    KeyValuePair<bool, Plugin> tm = this.SearchPlugin(item);
+                    KeyValuePair<bool, Plugin> tm = this.SearchPlugin(item); //TODO: no llama 2 veces al plaguin si esta loadeado
                     if (!tm.Key && tm.Value != null)
                         plList.Add(tm.Value);
                 }
