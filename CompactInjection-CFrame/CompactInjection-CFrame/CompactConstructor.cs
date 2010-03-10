@@ -310,19 +310,35 @@ namespace CompactInjection
         private T SimpleSetWihObjectDefinition<T>(T objToInject, Property var) where T : class
         {
             ObjectDefinition def = _registry.GetDefinition(_ContextName, var.SetWithObjectDefinition);
-            Type tipo = Assembly.LoadFrom(def.FileName).GetType(def.Type);
+            Type tipo = GetTypeForFileName(def.FileName, def.Type);//Assembly.LoadFrom(def.FileName).GetType(def.Type);
+             if(tipo== null)
+                throw new Exception(string.Format("The type of the Property {0}, is null. Fill the  filename assembly of the property. To load the asembly", var.Name));
             return SetProperty<T>(objToInject, var.Name, New<object>(var.SetWithObjectDefinition, tipo));
         }
 
         private static T SetWithNewType<T>(T objToInject, Property var)
         {
-            Type tipo = Assembly.LoadFrom(var.FileName).GetType(var.SetWithNewType);
+            Type tipo = GetTypeForFileName(var.FileName, var.SetWithNewType);
+            if(tipo== null)
+                throw new Exception(string.Format("The type of the Property {0}, is null. Fill the  filename assembly of the property. To load the asembly", var.Name));
             return SetProperty<T>(objToInject, var.Name, (var.ObjectToInject==null)?NewObject(tipo): var.ObjectToInject);
         }
 
         private static T SimpleSet<T>(T objToInject, Property var)
         {
             return SetProperty<T>(objToInject, var.Name, var.Set);
+        }
+
+        private static Type GetTypeForFileName(string filename, string stype)
+        {
+            Type tipo;
+            if (!string.IsNullOrEmpty(filename))
+                tipo = Assembly.LoadFrom(filename).GetType(stype);
+            else
+            {
+               tipo = Type.GetType(stype); 
+            }
+            return tipo;
         }
         #endregion
         

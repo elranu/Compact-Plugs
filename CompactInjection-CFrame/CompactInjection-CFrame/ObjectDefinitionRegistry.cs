@@ -26,9 +26,12 @@ namespace CompactInjection
             /// </summary> 
             /// <param name="cont"></param>
             public void AddDefinitions(CompactContainer cont) {
-                foreach (Context var in cont.Contexts)
+                if (cont != null)
                 {
-                    AddDefinitions(var);
+                    foreach (Context var in cont.Contexts)
+                    {
+                        AddDefinitions(var);
+                    }
                 }
             }
             /// <summary>

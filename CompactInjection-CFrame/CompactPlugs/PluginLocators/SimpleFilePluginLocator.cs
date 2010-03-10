@@ -26,13 +26,16 @@ namespace CompactPlugs.PluginLocators
             List<Plugin> listCont = new List<Plugin>();
             string dir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetModules()[0].FullyQualifiedName);
             SR = File.OpenText(System.IO.Path.Combine( dir, fileName));
-            S = SR.ReadLine();
-            while (S != null)
+            do
             {
                 S = SR.ReadLine();
-                CompactPlugs_Primitives.PlugsContainer cont = XmlSerializerDeserializer.DeSerializer<CompactPlugs_Primitives.PlugsContainer>(S);
-                listCont.AddRange(cont.Plugins);
-            }
+                if (!string.IsNullOrEmpty(S))
+                {
+                    S = System.IO.Path.Combine(dir, S);
+                    CompactPlugs_Primitives.PlugsContainer cont = XmlSerializerDeserializer.DeSerializer<CompactPlugs_Primitives.PlugsContainer>(S);
+                    listCont.AddRange(cont.Plugins);
+                }
+            } while (S != null);
             SR.Close();
 
             newCont.Plugins = listCont.ToArray();
@@ -46,7 +49,7 @@ namespace CompactPlugs.PluginLocators
 
         public CompactInjection.ConfigurationObjects.CompactContainer ObjectDefinitions
         {
-            get { throw new NotImplementedException(); }
+            get { return null; }
         }
 
         public event EventHandler<NewPlugsEventArgs> NewPlugins;
