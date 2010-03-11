@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("CompactPlugs Primitives")]
-[assembly: AssemblyDescription("CompactPlugs Primitives for .Net Compact Framework")]
+[assembly: AssemblyTitle("CompactPlugs")]
+[assembly: AssemblyDescription("CompactPlugs for .Net Compact Framework")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("CompactPlugs Primitives - Develop by Mariano Julio Vicario")]
-[assembly: AssemblyProduct("CompactPlugs Primitives")]
-[assembly: AssemblyCopyright("CompactPlugs Primitives - Develop by Mariano Julio Vicario")]
+[assembly: AssemblyCompany("CompactPlugs - Develop by Mariano Julio Vicario")]
+[assembly: AssemblyProduct("CompactPlugs")]
+[assembly: AssemblyCopyright("CompactPlugs - Develop by Mariano Julio Vicario")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("7f348c14-3bee-4c8d-b970-60204ad797a4")]
+[assembly: Guid("4777fe88-44bf-41dc-9a7e-fe02eb4ba985")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -31,5 +31,5 @@ using System.Runtime.InteropServices;
 //
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
-[assembly: AssemblyVersion("1.1.*")]
+[assembly: AssemblyVersion("1.0.*")]
 

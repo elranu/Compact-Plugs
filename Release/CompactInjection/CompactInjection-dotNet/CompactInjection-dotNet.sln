@@ -1,0 +1,47 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompactInjection-dotNet", "CompactInjection-dotNet\CompactInjection-dotNet.csproj", "{CF4F5221-284A-48F7-B2CD-14D5F657C039}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompactPlugs", "CompactPlugs\CompactPlugs.csproj", "{55790A08-7661-46A3-9801-4EC6A47D1AD7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompactPlugs-Primitives", "CompactPlugs-Primitives\CompactPlugs-Primitives.csproj", "{CE671143-5400-47B6-A19A-D10CD1C48A0A}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 4
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tfs02.codeplex.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = CompactInjection-dotNet\\CompactInjection-dotNet.csproj
+		SccProjectName1 = CompactInjection-dotNet
+		SccLocalPath1 = CompactInjection-dotNet
+		SccProjectUniqueName2 = CompactPlugs\\CompactPlugs.csproj
+		SccProjectName2 = CompactPlugs
+		SccLocalPath2 = CompactPlugs
+		SccProjectUniqueName3 = CompactPlugs-Primitives\\CompactPlugs-Primitives.csproj
+		SccProjectName3 = CompactPlugs-Primitives
+		SccLocalPath3 = CompactPlugs-Primitives
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CF4F5221-284A-48F7-B2CD-14D5F657C039}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF4F5221-284A-48F7-B2CD-14D5F657C039}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF4F5221-284A-48F7-B2CD-14D5F657C039}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF4F5221-284A-48F7-B2CD-14D5F657C039}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55790A08-7661-46A3-9801-4EC6A47D1AD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55790A08-7661-46A3-9801-4EC6A47D1AD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55790A08-7661-46A3-9801-4EC6A47D1AD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55790A08-7661-46A3-9801-4EC6A47D1AD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE671143-5400-47B6-A19A-D10CD1C48A0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE671143-5400-47B6-A19A-D10CD1C48A0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE671143-5400-47B6-A19A-D10CD1C48A0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE671143-5400-47B6-A19A-D10CD1C48A0A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

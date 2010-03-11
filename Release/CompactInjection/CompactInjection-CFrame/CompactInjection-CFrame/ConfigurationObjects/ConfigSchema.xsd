@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://tempuri.org/ConfigSchema.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="CompactContainer">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" name="Context">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="ObjectDefinition">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="Property">
+                      <xs:complexType>
+                        <xs:attribute name="Name" type="xs:string" use="required" />
+                        <xs:attribute name="Set" type="xs:string" use="optional" />
+                        <xs:attribute name="SetWithNewType" type="xs:string" use="optional" />
+                        <xs:attribute name="FileName" type="xs:string" use="optional" />
+                        <xs:attribute name="SetWithObjectDefinition" type="xs:string" use="optional" />
+                        <xs:attribute name="SetList" type="xs:string" use="optional" />
+                        <xs:attribute name="ListType" type="xs:string" use="optional" />
+                        <xs:attribute name="SetDictionary" type="xs:string" use="optional" />
+                        <xs:attribute name="KeyType" type="xs:string" use="optional" />
+                        <xs:attribute name="ValueType" type="xs:string" use="optional"/>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="Name" type="xs:string" use="required" />
+                  <xs:attribute name="Type" type="xs:string" use="required" />
+                  <xs:attribute name="FileName" type="xs:string" use="required" />
+                  <xs:attribute name="Singleton" type="xs:boolean" use="optional" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="Name" type="xs:string" use="required"/>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

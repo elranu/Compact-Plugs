@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<PlugsContainer>
+  <Plugin Name="id" Type="type" FileName="name.dll" Version="1.0" LazyLoad="true" Category="opo" Label="ioio" HelpLabel="opo" DescriptionLabel="ioioi" InstallMethod="mm" RunMethod="run" UninstallMethod="uni">
+    <Caller-Plugin name="id" />
+    <Caller-Plugin name="id" />
+    <Dependent-Plugin name="id" />
+    <Dependent-Plugin name="id" />
+    <Input Id="in1" Type="type" SetterProperty="setter" AcessLevel="*" Mandatory="True" />
+    <Input Id="in2" Type="type" SetterProperty="setter" AcessLevel="restricted">
+      <Allow Id="in1" />
+      <Allow Id="in3" />
+      <Allow Type="type" />
+      <Deny Id="in4"  />
+      <Deny Id="in5"  />
+      <Deny Type="type"  />
+    </Input>
+    <Output Id="" Type="type" GetterProperty="getter" />
+    <Output Id="" Type="type" GetterProperty="getter" />
+  </Plugin>
+  <Plugin Name="id2" Type="type2" FileName="name.dll" Version="1.0" LazyLoad="true" LabelGetter="ioio222" HelpLabelGetter="o2po" DescriptionLabelGetter="ioioi2">
+    <Input Id="in1" Type="type" SetterProperty="setter" AcessLevel="*" />
+    <Input Id="in2" Type="type" SetterProperty="setter" AcessLevel="restricted"> <!-- solo hay accesslavels "" o vacio, restricted -->
+      <Allow Id="in1" />
+      <Allow Id="in3" />
+      <Allow Type="type" />
+      <Deny Id="in4"  />
+      <Deny Id="in5"  />
+      <Deny Type="type"  />
+    </Input>
+    <Output Id="" Type="type" GetterProperty="getter" />
+    <Output Id="" Type="type" GetterProperty="getter" />
+  </Plugin>
+</PlugsContainer> 

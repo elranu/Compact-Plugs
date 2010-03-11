@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<PlugsContainer>
+  <Plugin Name="HelloPlugin1" Type="TestCompactPlugs1.Plugins.Plugin1" FileName="TestCompactPlugs1.exe" Version="1.0" LazyLoad="true" Category="lables" Label="label" HelpLabel="Help label" DescriptionLabel="label  Form" InstallMethod="" RunMethod="RunPlugin1" UninstallMethod="">
+    <Caller-Plugin name="AddButton" />
+    <Input Id="InWinForm" Type="TestCompactPlugs1.Form1" FileName="TestCompactPlugs1.exe" SetterProperty="WinForm" Mandatory="true"></Input>
+  </Plugin>
+</PlugsContainer> 
