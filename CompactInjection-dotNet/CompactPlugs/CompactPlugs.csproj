@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{CF4F5221-284A-48F7-B2CD-14D5F657C039}</ProjectGuid>
+    <ProjectGuid>{55790A08-7661-46A3-9801-4EC6A47D1AD7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CompactInjection</RootNamespace>
-    <AssemblyName>CompactInjection</AssemblyName>
+    <RootNamespace>CompactPlugs</RootNamespace>
+    <AssemblyName>CompactPlugs</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
@@ -49,45 +49,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\CompactInjection-CFrame\CompactInjection-CFrame\CompactConstructor.cs">
-      <Link>CompactConstructor.cs</Link>
+    <Compile Include="..\..\CompactInjection-CFrame\CompactPlugs\CompactPlugsRegistry.cs">
+      <Link>CompactPlugsRegistry.cs</Link>
     </Compile>
-    <Compile Include="..\..\CompactInjection-CFrame\CompactInjection-CFrame\ConfigurationObjects\ConfigSchema.cs">
-      <Link>ConfigurationObjects\ConfigSchema.cs</Link>
-      <DependentUpon>ConfigSchema.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="..\..\CompactInjection-CFrame\CompactInjection-CFrame\ConfigurationObjects\Property.cs">
-      <Link>ConfigurationObjects\Property.cs</Link>
-    </Compile>
-    <Compile Include="..\..\CompactInjection-CFrame\CompactInjection-CFrame\Interfaces\IContextSelector.cs">
-      <Link>Interfaces\IContextSelector.cs</Link>
-    </Compile>
-    <Compile Include="..\..\CompactInjection-CFrame\CompactInjection-CFrame\ObjectDefinitionRegistry.cs">
-      <Link>ObjectDefinitionRegistry.cs</Link>
-    </Compile>
-    <Compile Include="..\..\CompactInjection-CFrame\CompactInjection-CFrame\SingletonRegistry.cs">
-      <Link>SingletonRegistry.cs</Link>
-    </Compile>
-    <Compile Include="..\..\CompactInjection-CFrame\CompactInjection-CFrame\Tools\Assumes.cs">
-      <Link>Tools\Assumes.cs</Link>
-    </Compile>
-    <Compile Include="..\..\CompactInjection-CFrame\CompactInjection-CFrame\Tools\Assumes.InternalErrorException.cs">
-      <Link>Tools\Assumes.InternalErrorException.cs</Link>
-    </Compile>
-    <Compile Include="..\..\CompactInjection-CFrame\CompactInjection-CFrame\Tools\XMLSerializerDeserializer.cs">
-      <Link>Tools\XMLSerializerDeserializer.cs</Link>
+    <Compile Include="..\..\CompactInjection-CFrame\CompactPlugs\PluginEngine.cs">
+      <Link>PluginEngine.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\..\CompactInjection-CFrame\CompactInjection-CFrame\ConfigurationObjects\ConfigExample.xml">
-      <Link>ConfigurationObjects\ConfigExample.xml</Link>
-    </Content>
+    <ProjectReference Include="..\CompactInjection-dotNet\CompactInjection-dotNet.csproj">
+      <Project>{CF4F5221-284A-48F7-B2CD-14D5F657C039}</Project>
+      <Name>CompactInjection-dotNet</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CompactPlugs-Primitives\CompactPlugs-Primitives.csproj">
+      <Project>{CE671143-5400-47B6-A19A-D10CD1C48A0A}</Project>
+      <Name>CompactPlugs-Primitives</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\CompactInjection-CFrame\CompactInjection-CFrame\ConfigurationObjects\ConfigSchema.xsd">
-      <Link>ConfigurationObjects\ConfigSchema.xsd</Link>
-    </None>
+    <Folder Include="PluginLocators\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
