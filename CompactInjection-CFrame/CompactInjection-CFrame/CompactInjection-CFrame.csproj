@@ -70,6 +70,7 @@
     <Compile Include="SingletonRegistry.cs" />
     <Compile Include="Tools\Assumes.cs" />
     <Compile Include="Tools\Assumes.InternalErrorException.cs" />
+    <Compile Include="Tools\ObjectDefinitionBuilder.cs" />
     <Compile Include="Tools\XMLSerializerDeserializer.cs" />
   </ItemGroup>
   <ItemGroup>

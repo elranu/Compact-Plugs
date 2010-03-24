@@ -58,6 +58,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PluginDefinitionBuilderByAttribute.cs" />
     <Compile Include="PluginEngine.cs" />
     <Compile Include="CompactPlugsRegistry.cs" />
     <Compile Include="PluginLocators\SimpleFilePluginLocator.cs" />
