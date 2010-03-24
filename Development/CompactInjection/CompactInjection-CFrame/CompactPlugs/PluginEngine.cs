@@ -16,18 +16,26 @@ namespace CompactPlugs
     public class PluginEngine
     {
 
+        #region PluginLocatorPropertie
         private IPluginLocator _PluginLocator;
-        public IPluginLocator PluginLocator 
+        public IPluginLocator PluginLocator
         {
-            private set 
-            {   
+            set
+            {
                 _PluginLocator = value;
                 PluginLocator.NewPlugins += new EventHandler<NewPlugsEventArgs>(PluginLocator_NewPlugins);
             }
-            get { return _PluginLocator;  }
+            get { return _PluginLocator; }
         }
+        private void PluginLocator_NewPlugins(object sender, NewPlugsEventArgs e)
+        {
+            PlugsRegistry.Add(e.NewPlugins);
+        } 
+        #endregion
+
         private CompactPlugsRegistry PlugsRegistry { get; set; }
         private CompactConstructor Constructor { get; set; }
+        public object WinForm { get; private set; }
 
         #region Constructors and Init
         public PluginEngine(IPluginLocator locator)
@@ -40,10 +48,7 @@ namespace CompactPlugs
 
         }
 
-        private void PluginLocator_NewPlugins(object sender, NewPlugsEventArgs e)
-        {
-            PlugsRegistry.Add(e.NewPlugins);
-        }
+      
 
         public void Run()
         {
@@ -72,31 +77,47 @@ namespace CompactPlugs
         }
         #endregion
 
-        public List<Plugin> SearchPluginsByCategory(string category)
-        {
-            return PlugsRegistry.SearchPluginsByCategory(category);
-        }
+        #region Public Methods
 
-        public void CallPlugins(object obj)
+        /// <summary>
+        /// Call all plugins by category
+        /// </summary>
+        /// <param name="category">plugins category</param>
+        public void CallPlugins(string category)
         {
-            PlugsRegistry.ExtractOutputs(obj);
-            List<Plugin> plugs = PlugsRegistry.GetCalledPlugins(obj.GetType());
-            if(plugs != null && plugs.Count >0)
+            List<Plugin> plugs = this.SearchPluginsByCategory(category);
+            if (plugs != null && plugs.Count > 0)
                 foreach (Plugin item in plugs)
                 {
                     RunPlugin(item);
                 }
         }
-        public void CallPlugins(object obj, string str)
+        /// <summary>
+        /// Call all plugins called by this plugin
+        /// </summary>
+        /// <param name="obj">The plugin that calls the dependent plugins</param>
+        public void CallPlugins(object obj)
         {
-            throw new  NotImplementedException();
+            PlugsRegistry.ExtractOutputs(obj);
+            List<Plugin> plugs = PlugsRegistry.GetCalledPlugins(obj.GetType());
+            if (plugs != null && plugs.Count > 0)
+                foreach (Plugin item in plugs)
+                {
+                    RunPlugin(item);
+                }
         }
 
         public void UnloadPlugin(object obj)
         {
-            throw new NotImplementedException();   
+            throw new NotImplementedException();
         }
+        private List<Plugin> SearchPluginsByCategory(string category)
+        {
+            return PlugsRegistry.SearchPluginsByCategory(category);
+        } 
+        #endregion
 
+        #region Private Methods
         private void InstallPlugin(Plugin plug)
         {
             try
@@ -108,20 +129,20 @@ namespace CompactPlugs
                     installMethod.Invoke(Constructor.Create(ty), new object[] { });
                 }
             }
-            catch (Exception e) 
+            catch (Exception e)
             {
-                throw new Exception(string.Format("The plugin %1 couldn´t install", plug.Name), e);
-            }    
+                throw new Exception(string.Format("The plugin {0} couldn´t install", plug.Name), e);
+            }
         }
 
         private void RunPlugin(Plugin plug)
         {
-           
+
             Type ty = GetTypeForFileName(plug.FileName, plug.Type);//Assembly.LoadFrom(plug.FileName).GetType(plug.Type);
             if (ty == null)
                 throw new Exception(string.Format("The plugin {0} could not load the type. Are yo missing the Assembly Filename? ", plug.Name));
             try
-            {    
+            {
                 CheckAndRunDependencies(plug);
                 object obj = Constructor.Create(ty);
                 obj = InjectInputs(obj, plug);
@@ -132,7 +153,7 @@ namespace CompactPlugs
                 string parent = obj.GetType().BaseType.ToString();
                 if (parent == "System.Windows.Forms.Form" && WinForm == null)
                     this.WinForm = obj;
-                
+
             }
             catch (Exception e)
             {
@@ -147,7 +168,7 @@ namespace CompactPlugs
                 tipo = Assembly.LoadFrom(filename).GetType(stype);
             else
             {
-               tipo = Type.GetType(stype, true);
+                tipo = Type.GetType(stype, true);
             }
             return tipo;
         }
@@ -168,7 +189,7 @@ namespace CompactPlugs
 
         private ObjectDefinition CreateObjectDefinition(object obj, Plugin plug)
         {
-            if (plug != null && obj!= null && plug.Inputs != null && plug.Inputs.Length > 0)
+            if (plug != null && obj != null && plug.Inputs != null && plug.Inputs.Length > 0)
             {
                 ObjectDefinition objDef = new ObjectDefinition();
                 objDef.Name = plug.Name + "Plug";
@@ -185,7 +206,7 @@ namespace CompactPlugs
                     }
                 }
                 objDef.Properties = propertiesToInject.ToArray();
-                return objDef; 
+                return objDef;
             }
             return null;
         }
@@ -203,10 +224,11 @@ namespace CompactPlugs
                 {
                     if (!PlugsRegistry.IsPluginLoaded(item.name))
                         RunPlugin(item.name);
-                }          
+                }
         }
 
-        public Object WinForm { get; private set; }
+        #endregion
+        
 
     }
 
