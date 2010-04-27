@@ -39,7 +39,10 @@ namespace CompactInjection.ConfigurationObjects
         {
 
         }
-
+        public Property(string name)
+        {
+            this.Name = name;
+        }
       
     
     }
