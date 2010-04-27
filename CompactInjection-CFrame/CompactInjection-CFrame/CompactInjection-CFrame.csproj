@@ -58,6 +58,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\InjectableAttribute.cs" />
     <Compile Include="CompactConstructor.cs" />
     <Compile Include="ConfigurationObjects\CompactContainer.cs" />
     <Compile Include="ConfigurationObjects\ConfigSchema.cs">

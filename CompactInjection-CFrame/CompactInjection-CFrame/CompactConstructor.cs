@@ -371,6 +371,33 @@ namespace CompactInjection
         }
 
         /// <summary>
+        /// Build an object witch has the Injectable Attribute
+        /// Uses the context wich was build the CompactConstructor
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns>if could not build return null</returns>
+        public T New<T>() where T : class
+        {
+            if (_registry.GetDefinition(_ContextName, typeof(T).ToString()) != null)
+            {
+                return New<T>(typeof(T).ToString());
+            }
+            else
+            {
+                var objBuilder = new ObjectDefinitionBuilder();
+                ObjectDefinition obj = objBuilder.GetObjectDefinition(typeof(T));
+                if (obj == null)
+                    return null;
+                else {
+                     this.AddDefinition(obj, _ContextName);
+                     return New<T>(typeof(T).ToString());
+                }
+            }
+        
+        }
+
+
+        /// <summary>
         /// Intance a New object of a type
         /// Does not inject. Olny creates the instance the object type
         /// </summary>
