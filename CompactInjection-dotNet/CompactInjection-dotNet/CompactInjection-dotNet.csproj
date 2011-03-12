@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{CF4F5221-284A-48F7-B2CD-14D5F657C039}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -22,7 +22,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;dotNet</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -35,6 +35,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Castle.Core, Version=2.5.1.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Libs\Castle\dotNet35\Castle.Core.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -49,6 +53,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\CompactInjection-CFrame\CompactInjection-CFrame\Attributes\InjectableAttribute.cs">
+      <Link>Attributes\InjectableAttribute.cs</Link>
+    </Compile>
     <Compile Include="..\..\CompactInjection-CFrame\CompactInjection-CFrame\CompactConstructor.cs">
       <Link>CompactConstructor.cs</Link>
     </Compile>
@@ -73,6 +80,9 @@
     </Compile>
     <Compile Include="..\..\CompactInjection-CFrame\CompactInjection-CFrame\Tools\Assumes.InternalErrorException.cs">
       <Link>Tools\Assumes.InternalErrorException.cs</Link>
+    </Compile>
+    <Compile Include="..\..\CompactInjection-CFrame\CompactInjection-CFrame\Tools\ObjectDefinitionBuilder.cs">
+      <Link>Tools\ObjectDefinitionBuilder.cs</Link>
     </Compile>
     <Compile Include="..\..\CompactInjection-CFrame\CompactInjection-CFrame\Tools\XMLSerializerDeserializer.cs">
       <Link>Tools\XMLSerializerDeserializer.cs</Link>
