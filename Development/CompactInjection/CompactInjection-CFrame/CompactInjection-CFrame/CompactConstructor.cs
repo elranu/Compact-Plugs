@@ -6,6 +6,9 @@ using CompactInjection.Interfaces;
 using CompactInjection.ConfigurationObjects;
 using CompactInjection.Tools;
 using System.Collections;
+#if dotNet
+using Castle.DynamicProxy;
+#endif
 
 //Develop by Mariano Julio Vicario -
 //http://compactplugs.codeplex.com/
