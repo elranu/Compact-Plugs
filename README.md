@@ -13,7 +13,7 @@ Features:
 * CompactCostructor can have several object definitions, of the same object, in different contexts. The default context is name “Default”.  Also for this feature you can create a Context selector, just implementing the interface IContextSelector.
 * The configuration of the object definitions can be created by XML or by objects. 
 
-[image:uml1.png]
+![uml1](https://cloud.githubusercontent.com/assets/873616/25962738/4ce05234-3655-11e7-9d9f-ecd8e78eeeca.png)
 
 * Has a Registry for singleton ObjectDefinitions
 * CompactConstructor, has a Default constructor for your application (Singleton). Of course you can create as many CompactConstructor´s as you want.
